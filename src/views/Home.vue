@@ -9,7 +9,7 @@
           :key="col"
           width="100px"
         >{{String.fromCharCode(col+64)}}</th>
-        <th class="form-header col-header"></th>
+        <!-- <th class="form-header col-header"></th> -->
         <!--自适应列-->
       </tr>
       <tr class="form-row" v-for="row in 40" :key="row">
@@ -24,7 +24,7 @@
           @mouseover="cell_mouseover"
           @mouseup="cell_mouseup"
         ></td>
-        <td></td>
+        <!-- <td></td> -->
         <!--自适应列-->
       </tr>
     </table>
@@ -206,6 +206,8 @@ export default {
       this.leftCount = rbRow - ltRow + 1;
       // console.log('行的个数：'+ (rbCol - ltCol + 1));
       this.topCount = rbCol - ltCol + 1;
+      console.log('宽度：' + this.cellWidth);
+      console.log('高度：' + this.cellHeight);
       this.selectWidth = Number((rbCol - ltCol + 1) * this.cellWidth);
       this.selectHeight = Number((rbRow - ltRow + 1) * this.cellHeight);
 
@@ -280,9 +282,10 @@ export default {
 }
 .form-table {
   border-spacing: 0;
-  width: 3000px;
+  width: 100%; 
   border-left: 1px solid #666;
   border-top: 1px solid #666;
+  table-layout: fixed; /*fixed表示td的宽度是定长的，不随td内容变化而变化*/
   cursor: crosshair;
   webkit-user-select: none;
   -moz-user-select: none;
@@ -296,6 +299,7 @@ th,
 td {
   border-right: 1px solid;
   border-bottom: 1px solid;
+  width:80px;
 }
 .form-cell {
   border-color: #ccc;
