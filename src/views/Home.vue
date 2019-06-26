@@ -47,6 +47,7 @@ export default {
       ispress: false,
       cellWidth: null,
       cellHeight: null,
+      cell_one: false,
       startX: null,
       topCount: null,
       leftCount: null,
@@ -64,9 +65,10 @@ export default {
       // $("#form-frame").on("click", ".selectDiv", function() {
       //   console.log("点击div");
       // });
+      this.cell_one = false;
       var target = e.target;
-      target.style.cssText =
-        "box-sizing:border-box;background:rgba(180,239,255,0.4);";
+      // target.style.cssText =
+      //   "box-sizing:border-box;background:rgba(180,239,255,0.4);";
       // 获取每个单元格的宽度和高度
       var box = document.getElementById("form-frame");
       this.cellWidth = target.offsetWidth;
@@ -85,6 +87,7 @@ export default {
       if (this.ispress) {
         $this.region_select(this.focus_td, target);
         this.focus_td.style.cssText = "";
+        this.cell_one = true;
       } else {
         this.topCount = null;
         this.leftCount = null;
@@ -92,63 +95,65 @@ export default {
     },
     cell_mouseup(e) {
       this.ispress = false;
-      var target = e.target;
-      this.endX = target.offsetLeft;
-      this.endY = target.offsetTop;
-      var left = this.endX > this.startX ? this.startX : this.endX;
-      var top = this.endY > this.startY ? this.startY : this.endY;
-      var box = document.getElementById("form-frame");
-      // 创建元素
-      var tableDiv = document.createElement("div");
-      var selectDiv = document.createElement("table");
-      var topUl = document.createElement("ul");
-      var leftUl = document.createElement("ul");
-      var tr = document.createElement("tr");
-      var th = document.createElement("th");
-      var td = document.createElement("td");
-      var titleDiv = document.createElement("div");
-      // 拼接li
-      var topLi = "";
-      var leftLi = "";
-      for (var i = 0; i < this.topCount; i++) {
-        topLi += `<li style="width:${this.cellWidth}px;height:${
-          this.cellHeight
-        }px; line-height:${this.cellHeight}px">${i + 1}</li>`;
-      }
-      for (var j = 0; j < this.leftCount; j++) {
-        leftLi += `<li class="leftLi" style=" width:${
-          this.cellWidth
-        }px;height:${this.cellHeight}px; line-height:${this.cellHeight}px">${j +
-          1}</li>`;
-      }
+      if (this.cell_one) { //判断是否点击一个单元格
+        var target = e.target;
+        this.endX = target.offsetLeft;
+        this.endY = target.offsetTop;
+        var left = this.endX > this.startX ? this.startX : this.endX;
+        var top = this.endY > this.startY ? this.startY : this.endY;
+        var box = document.getElementById("form-frame");
+        // 创建元素
+        var tableDiv = document.createElement("div");
+        var selectDiv = document.createElement("table");
+        var topUl = document.createElement("ul");
+        var leftUl = document.createElement("ul");
+        var tr = document.createElement("tr");
+        var th = document.createElement("th");
+        var td = document.createElement("td");
+        var titleDiv = document.createElement("div");
+        // 拼接li
+        var topLi = "";
+        var leftLi = "";
+        for (var i = 0; i < this.topCount; i++) {
+          topLi += `<li style="width:${this.cellWidth}px;height:${
+            this.cellHeight
+          }px; line-height:${this.cellHeight}px">${i + 1}</li>`;
+        }
+        for (var j = 0; j < this.leftCount; j++) {
+          leftLi += `<li class="leftLi" style=" width:${
+            this.cellWidth
+          }px;height:${this.cellHeight}px; line-height:${
+            this.cellHeight
+          }px">${j + 1}</li>`;
+        }
 
-      tableDiv.setAttribute("class", "selectDiv");
-      // table外层div
-      tableDiv.style.cssText = `width:${this.selectWidth}px;height:${
-        this.selectHeight
-      }px;position:absolute;z-index:-1;top:${top}px;left:${left}px;
+        tableDiv.setAttribute("class", "selectDiv");
+        // table外层div
+        tableDiv.style.cssText = `width:${this.selectWidth}px;height:${
+          this.selectHeight
+        }px;position:absolute;top:${top}px;left:${left}px;
       box-sizing:border-box;
       background:rgba(180,239,255,0.4);
       border-width: 2px 1px 1px 2px;
       border-style: solid;
       border-color: rgb(164, 192, 248)`;
-      // 选中table
-      selectDiv.style.cssText = `width:${this.selectWidth}px;height:${
-        this.selectHeight
-      }px;position:relative;`;
-      // table上方字段
-      topUl.style.cssText = `width:${this.selectWidth}px;height:${
-        this.cellHeight
-      }px;position:absolute;top:${-this.cellHeight -
-        2}px;left:-2px;display:flex;`;
-      // table左方字段
-      leftUl.style.cssText = `width:${this.cellWidth}px;height:${
-        this.selectHeight
-      }px;position:absolute;top:-2px;left:${-this.cellWidth - 2}px;`;
-      topUl.setAttribute("id", "topUl");
-      leftUl.setAttribute("id", "leftUl");
-      // tableTitle
-      titleDiv.style.cssText = `width:${this.cellWidth}px;
+        // 选中table
+        selectDiv.style.cssText = `width:${this.selectWidth}px;height:${
+          this.selectHeight
+        }px;position:relative;`;
+        // table上方字段
+        topUl.style.cssText = `width:${this.selectWidth}px;height:${
+          this.cellHeight
+        }px;position:absolute;top:${-this.cellHeight -
+          2}px;left:-2px;display:flex;`;
+        // table左方字段
+        leftUl.style.cssText = `width:${this.cellWidth}px;height:${
+          this.selectHeight
+        }px;position:absolute;top:-2px;left:${-this.cellWidth - 2}px;`;
+        topUl.setAttribute("id", "topUl");
+        leftUl.setAttribute("id", "leftUl");
+        // tableTitle
+        titleDiv.style.cssText = `width:${this.cellWidth}px;
       height:${this.cellHeight}px;
       position:absolute;top:-2px;
       left:${-this.cellWidth - 2}px;
@@ -159,33 +164,34 @@ export default {
       text-align:right;
       padding-right:5px;
       font-size:18px;`;
-      titleDiv.innerHTML = "A01";
-      // topLi.style.cssText = `border:1px solid blue;width:100px`;
-      // leftLi.style.cssText = `border:1px solid blue;height:28px`;
+        titleDiv.innerHTML = "A01";
+        // topLi.style.cssText = `border:1px solid blue;width:100px`;
+        // leftLi.style.cssText = `border:1px solid blue;height:28px`;
 
-      //   selectDiv.innerHTML=`<table>
-      //   <tr>
-      //     <th>1</th>
-      //     <th>2</th>
-      //     <th>3</th>
-      //   </tr>
-      //   <tr>
-      //     <td>4</td>
-      //     <td>5</td>
-      //     <td>6</td>
-      //   </tr>
-      // </table>`
-      tableDiv.appendChild(selectDiv);
-      // topUl.appendChild(topLi);
-      topUl.innerHTML = topLi;
-      leftUl.innerHTML = leftLi;
-      selectDiv.appendChild(topUl);
-      selectDiv.appendChild(leftUl);
-      selectDiv.appendChild(titleDiv);
-      selectDiv.appendChild(tr);
-      box.appendChild(tableDiv);
-      this.selectWidth = "";
-      this.selectHeight = "";
+        //   selectDiv.innerHTML=`<table>
+        //   <tr>
+        //     <th>1</th>
+        //     <th>2</th>
+        //     <th>3</th>
+        //   </tr>
+        //   <tr>
+        //     <td>4</td>
+        //     <td>5</td>
+        //     <td>6</td>
+        //   </tr>
+        // </table>`
+        tableDiv.appendChild(selectDiv);
+        // topUl.appendChild(topLi);
+        topUl.innerHTML = topLi;
+        leftUl.innerHTML = leftLi;
+        selectDiv.appendChild(topUl);
+        selectDiv.appendChild(leftUl);
+        selectDiv.appendChild(titleDiv);
+        selectDiv.appendChild(tr);
+        box.appendChild(tableDiv);
+        this.selectWidth = "";
+        this.selectHeight = "";
+      }
     },
     //选中指定两个单元格之间的所有单元格
     region_select: function(fromTd, toTd) {
