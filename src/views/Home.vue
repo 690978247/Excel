@@ -254,14 +254,7 @@ export default {
 };
 </script>
 <style>
-ul,
-li {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
 .leftLi {
-  /* margin-left:50px; */
   text-align: right;
   box-sizing: border-box;
   padding-right: 10px;
