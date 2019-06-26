@@ -65,8 +65,8 @@ export default {
         "box-sizing:border-box;background:rgba(180,239,255,0.4);";
       // 获取每个单元格的宽度和高度
       var box = document.getElementById("form-frame");
-      this.cellWidth = target.clientWidth + 1;
-      this.cellHeight = target.clientHeight + 1;
+      this.cellWidth = target.offsetWidth;
+      this.cellHeight = target.offsetHeight;
       // this.startX = target.offsetLeft - cellWidth ;
       // this.startY = target.offsetTop - cellHeight;
       // 计算初始坐标
