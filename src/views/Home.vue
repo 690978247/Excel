@@ -123,7 +123,7 @@ export default {
       // table外层div
       tableDiv.style.cssText = `width:${this.selectWidth}px;height:${
         this.selectHeight
-      }px;position:absolute;top:${top}px;left:${left}px;
+      }px;position:absolute;z-index:-1;top:${top}px;left:${left}px;
       box-sizing:border-box;
       background:rgba(180,239,255,0.4);
       border-width: 2px 1px 1px 2px;
@@ -306,6 +306,7 @@ td {
 }
 .cell-select {
   background: #b4efff;
+  opacity:0.5;
 }
 .cell-focus {
   background: #fff;
