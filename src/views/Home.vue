@@ -60,6 +60,10 @@ export default {
   mounted() {},
   methods: {
     cell_mousedown(e) {
+      // 事件委托
+      // $("#form-frame").on("click", ".selectDiv", function() {
+      //   console.log("点击div");
+      // });
       var target = e.target;
       target.style.cssText =
         "box-sizing:border-box;background:rgba(180,239,255,0.4);";
@@ -81,7 +85,7 @@ export default {
       if (this.ispress) {
         $this.region_select(this.focus_td, target);
         this.focus_td.style.cssText = "";
-      }else{
+      } else {
         this.topCount = null;
         this.leftCount = null;
       }
@@ -109,14 +113,13 @@ export default {
       for (var i = 0; i < this.topCount; i++) {
         topLi += `<li style="width:${this.cellWidth}px;height:${
           this.cellHeight
-        }px; line-height:${this.cellHeight}px">${i+1}</li>`;
+        }px; line-height:${this.cellHeight}px">${i + 1}</li>`;
       }
       for (var j = 0; j < this.leftCount; j++) {
         leftLi += `<li class="leftLi" style=" width:${
           this.cellWidth
-        }px;height:${this.cellHeight}px; line-height:${
-          this.cellHeight
-        }px">${j+1}</li>`;
+        }px;height:${this.cellHeight}px; line-height:${this.cellHeight}px">${j +
+          1}</li>`;
       }
 
       tableDiv.setAttribute("class", "selectDiv");
@@ -148,15 +151,15 @@ export default {
       titleDiv.style.cssText = `width:${this.cellWidth}px;
       height:${this.cellHeight}px;
       position:absolute;top:-2px;
-      left:${-this.cellWidth -2}px;
-      top:${-this.cellHeight -2}px;
+      left:${-this.cellWidth - 2}px;
+      top:${-this.cellHeight - 2}px;
       line-height:${this.cellHeight}px;
       font-weight:bold;
       box-sizing:border-box;
       text-align:right;
       padding-right:5px;
-      font-size:18px;` ;
-      titleDiv.innerHTML = "A01"
+      font-size:18px;`;
+      titleDiv.innerHTML = "A01";
       // topLi.style.cssText = `border:1px solid blue;width:100px`;
       // leftLi.style.cssText = `border:1px solid blue;height:28px`;
 
@@ -206,8 +209,8 @@ export default {
       this.leftCount = rbRow - ltRow + 1;
       // console.log('行的个数：'+ (rbCol - ltCol + 1));
       this.topCount = rbCol - ltCol + 1;
-      console.log('宽度：' + this.cellWidth);
-      console.log('高度：' + this.cellHeight);
+      // console.log("单元格宽度：" + this.cellWidth);
+      // console.log("单元格高度：" + this.cellHeight);
       this.selectWidth = Number((rbCol - ltCol + 1) * this.cellWidth);
       this.selectHeight = Number((rbRow - ltRow + 1) * this.cellHeight);
 
@@ -282,7 +285,7 @@ export default {
 }
 .form-table {
   border-spacing: 0;
-  width: 100%; 
+  width: 100%;
   border-left: 1px solid #666;
   border-top: 1px solid #666;
   table-layout: fixed; /*fixed表示td的宽度是定长的，不随td内容变化而变化*/
@@ -299,14 +302,14 @@ th,
 td {
   border-right: 1px solid;
   border-bottom: 1px solid;
-  width:80px;
+  width: 80px;
 }
 .form-cell {
   border-color: #ccc;
 }
 .cell-select {
   background: #b4efff;
-  opacity:0.5;
+  opacity: 0.5;
 }
 .cell-focus {
   background: #fff;
