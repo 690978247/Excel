@@ -109,14 +109,14 @@ export default {
       for (var i = 0; i < this.topCount; i++) {
         topLi += `<li style="width:${this.cellWidth}px;height:${
           this.cellHeight
-        }px; line-height:${this.cellHeight}px">${i}</li>`;
+        }px; line-height:${this.cellHeight}px">${i+1}</li>`;
       }
       for (var j = 0; j < this.leftCount; j++) {
         leftLi += `<li class="leftLi" style=" width:${
           this.cellWidth
         }px;height:${this.cellHeight}px; line-height:${
           this.cellHeight
-        }px">${j}</li>`;
+        }px">${j+1}</li>`;
       }
 
       tableDiv.setAttribute("class", "selectDiv");
