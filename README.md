@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # vue-excel2
 
 ## Project setup
@@ -27,3 +28,8 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+# Excel
+
+Test
+>>>>>>> 1ab6f727e60299260e636228643a8646ab6130aa
