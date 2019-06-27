@@ -83,8 +83,32 @@ export default {
     },
     cell_mouseover(e) {
       var target = e.target;
+      // 获取鼠标坐标
       var $this = this;
       if (this.ispress) {
+        var pointX = e.pageX;
+        var pointY = e.pageY;
+        // console.log(pointX,pointY);
+        if ($(".selectDiv").length > 0) {
+          // 判斷是否碰撞
+          var selectStart = $(".selectDiv")[0].getAttribute("startPoint");
+          var selectEnd = $(".selectDiv")[0].getAttribute("endPoint");
+          var selectStartX = Number(selectStart.split(",")[0]);
+          var selectStartY = Number(selectStart.split(",")[1]);
+          var selectEndX = Number(selectEnd.split(",")[0]);
+          var selectEndY = Number(selectEnd.split(",")[1]);
+          if (
+            pointX >= Math.min(selectStartX, selectEndX) &&
+            pointX <= Math.max(selectStartX, selectEndX) &&
+            pointY >= Math.min(selectStartY, selectEndY) &&
+            pointY <= Math.max(selectStartY, selectEndY)
+          ) {
+            //在
+            console.log('在');
+          } else {
+            console.log('不在');
+          }
+        }
         $this.region_select(this.focus_td, target);
         this.focus_td.style.cssText = "";
         this.cell_one = true;
@@ -94,8 +118,9 @@ export default {
       }
     },
     cell_mouseup(e) {
-      this.ispress = false;   
-      if (this.cell_one) {  //判断是否点击一个单元格
+      this.ispress = false;
+      if (this.cell_one) {
+        //判断是否点击一个单元格
         var target = e.target;
         this.endX = target.offsetLeft;
         this.endY = target.offsetTop;
@@ -143,11 +168,12 @@ export default {
         tableDiv.style.cssText = `width:${this.selectWidth}px;height:${
           this.selectHeight
         }px;position:absolute;top:${top}px;left:${left}px;
-      box-sizing:border-box;
-      background:rgba(180,239,255,0.4);
-      border-width: 2px 1px 1px 2px;
-      border-style: solid;
-      border-color: rgb(164, 192, 248)`;
+        box-sizing:border-box;
+        z-index:-1;
+        background:rgba(180,239,255,0.4);
+        border-width: 2px 1px 1px 2px;
+        border-style: solid;
+        border-color: rgb(164, 192, 248)`;
         // 选中table
         selectDiv.style.cssText = `width:${this.selectWidth}px;height:${
           this.selectHeight
@@ -165,16 +191,16 @@ export default {
         leftUl.setAttribute("id", "leftUl");
         // tableTitle
         titleDiv.style.cssText = `width:${this.cellWidth}px;
-      height:${this.cellHeight}px;
-      position:absolute;top:-2px;
-      left:${-this.cellWidth - 2}px;
-      top:${-this.cellHeight - 2}px;
-      line-height:${this.cellHeight}px;
-      font-weight:bold;
-      box-sizing:border-box;
-      text-align:right;
-      padding-right:5px;
-      font-size:18px;`;
+        height:${this.cellHeight}px;
+        position:absolute;top:-2px;
+        left:${-this.cellWidth - 2}px;
+        top:${-this.cellHeight - 2}px;
+        line-height:${this.cellHeight}px;
+        font-weight:bold;
+        box-sizing:border-box;
+        text-align:right;
+        padding-right:5px;
+        font-size:18px;`;
         titleDiv.innerHTML = "A01";
         tableDiv.appendChild(selectDiv);
         // topUl.appendChild(topLi);
