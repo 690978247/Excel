@@ -94,8 +94,8 @@ export default {
       }
     },
     cell_mouseup(e) {
-      this.ispress = false;
-      if (this.cell_one) { //判断是否点击一个单元格
+      this.ispress = false;   
+      if (this.cell_one) {  //判断是否点击一个单元格
         var target = e.target;
         this.endX = target.offsetLeft;
         this.endY = target.offsetTop;
@@ -125,11 +125,17 @@ export default {
           }px;height:${this.cellHeight}px; line-height:${
             this.cellHeight
           }px">${j + 1}</li>`;
-        } 
+        }
 
-        var startPoint = [Number(this.startX - this.cellWidth),Number(this.startY - this.cellHeight)];
-        var endPoint = [Number(this.endX + this.cellWidth),Number(this.endY + this.cellHeight)];
-        console.log(startPoint,endPoint);
+        var startPoint = [
+          Number(this.startX - this.cellWidth),
+          Number(this.startY - this.cellHeight)
+        ];
+        var endPoint = [
+          Number(this.endX + this.cellWidth),
+          Number(this.endY + this.cellHeight)
+        ];
+        // console.log(startPoint, endPoint);
         tableDiv.setAttribute("class", "selectDiv");
         tableDiv.setAttribute("startPoint", startPoint);
         tableDiv.setAttribute("endPoint", endPoint);
