@@ -125,9 +125,14 @@ export default {
           }px;height:${this.cellHeight}px; line-height:${
             this.cellHeight
           }px">${j + 1}</li>`;
-        }
+        } 
 
+        var startPoint = [Number(this.startX - this.cellWidth),Number(this.startY - this.cellHeight)];
+        var endPoint = [Number(this.endX + this.cellWidth),Number(this.endY + this.cellHeight)];
+        console.log(startPoint,endPoint);
         tableDiv.setAttribute("class", "selectDiv");
+        tableDiv.setAttribute("startPoint", startPoint);
+        tableDiv.setAttribute("endPoint", endPoint);
         // table外层div
         tableDiv.style.cssText = `width:${this.selectWidth}px;height:${
           this.selectHeight
@@ -165,21 +170,6 @@ export default {
       padding-right:5px;
       font-size:18px;`;
         titleDiv.innerHTML = "A01";
-        // topLi.style.cssText = `border:1px solid blue;width:100px`;
-        // leftLi.style.cssText = `border:1px solid blue;height:28px`;
-
-        //   selectDiv.innerHTML=`<table>
-        //   <tr>
-        //     <th>1</th>
-        //     <th>2</th>
-        //     <th>3</th>
-        //   </tr>
-        //   <tr>
-        //     <td>4</td>
-        //     <td>5</td>
-        //     <td>6</td>
-        //   </tr>
-        // </table>`
         tableDiv.appendChild(selectDiv);
         // topUl.appendChild(topLi);
         topUl.innerHTML = topLi;
