@@ -98,9 +98,9 @@ export default {
           var selectEndX = Number(selectEnd.split(",")[0]);
           var selectEndY = Number(selectEnd.split(",")[1]);
           if (
-            pointX >= Math.min(selectStartX, selectEndX) &&
+            pointX > Math.min(selectStartX, selectEndX) &&
             pointX <= Math.max(selectStartX, selectEndX) &&
-            pointY >= Math.min(selectStartY, selectEndY) &&
+            pointY > Math.min(selectStartY, selectEndY) &&
             pointY <= Math.max(selectStartY, selectEndY)
           ) {
             //在
